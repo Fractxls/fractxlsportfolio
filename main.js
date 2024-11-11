@@ -2,14 +2,13 @@ const skills = [
     { name: "Roblox Building", description: "Advanced proficiency in Low & High Poly Roblox building themes." },
     { name: "Roblox UI Design", description: "Learning low-poly/medium-poly Graphical User Interface Design." },
     { name: "Luau Programmer", description: "Learning/Indermediate Luau Programmer." },
-    { name: "Clothing Designer", description: "Learning/Indermediate Clothing Designer for the Roblox Platform.." },
+    { name: "Clothing Designer", description: "Learning/Indermediate Clothing Designer for the Roblox Platform." },
+    { name: "Milsim Logo/Icon Designer", description: "Indermediate Milsim Icon Designer." },
 ];
 
 const categories = {
-    'Building': ['Low-Poly', 'High-Poly', 'Environmental Design'],
-    'Scripting': ['Luau', 'Menu', 'Database', 'User Interface'],
-    'UI Design': ['Low-Poly UI', 'Medium-Poly UI'],
-    'Clothing Design': ['Staff Shirts', 'Plain Shirts'],
+    'Building': ['Low-Poly', 'High-Poly'],
+    'UI Design': ['Medium-Poly UI'],
 };
 
 const previousWork = [

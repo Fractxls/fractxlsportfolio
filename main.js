@@ -144,9 +144,18 @@ let currentWorkPage = 1;
 let filteredWork = [...previousWork];
 
 function loadWork(page) {
+    galleryContainer.innerHTML = ''; // Clear previous content
     const start = (page - 1) * worksPerPage;
     const end = start + worksPerPage;
     const workSlice = filteredWork.slice(start, end);
+
+    if (workSlice.length === 0) {
+        const noImagesMessage = document.createElement('div');
+        noImagesMessage.className = 'no-images-found';
+        noImagesMessage.textContent = 'No Images';
+        galleryContainer.appendChild(noImagesMessage);
+        return;
+    }
 
     workSlice.forEach(work => {
         const workItem = document.createElement('div');

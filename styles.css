@@ -86,20 +86,19 @@ h2 {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px; /* Adds consistent space between items */
+    gap: 20px;
     margin-bottom: 20px;
 }
 
-/* NEW: Center images when 5 or more have been loaded */
 #commissions-container.loaded, #previous-container.loaded {
-    justify-content: center; /* Center the items */
+    justify-content: center;
 }
 
 .commission-item, .work-item {
     position: relative;
-    width: 200px; /* Set a fixed width */
-    min-width: 200px; /* Ensure no smaller than 200px */
-    height: 250px; /* Set a fixed height */
+    width: 200px;
+    min-width: 200px;
+    height: 250px;
     border-radius: 10px;
     overflow: hidden;
     cursor: pointer;
@@ -119,10 +118,9 @@ h2 {
     object-position: center;
 }
 
-/* Names positioned at the bottom with a semi-transparent dark background */
 .commission-name, .work-name {
     position: absolute;
-    bottom: 0; /* Position name at the bottom */
+    bottom: 0;
     left: 0;
     right: 0;
     background-color: rgba(0, 0, 0, 0.7);
@@ -132,7 +130,6 @@ h2 {
     transition: all 0.3s ease;
 }
 
-/* On hover, darken the background and reveal more padding for the name */
 .commission-item:hover .commission-name, .work-item:hover .work-name {
     background-color: rgba(0, 0, 0, 0.9);
     padding-bottom: 15px;
@@ -261,7 +258,6 @@ h2 {
     margin-bottom: 30px;
 }
 
-/* Custom Dropdown Styles */
 #previous-filters {
     display: flex;
     justify-content: center;
@@ -272,7 +268,7 @@ h2 {
 .dropdown-filter {
     padding: 10px 20px;
     border-radius: 25px;
-    background-color: rgba(68, 68, 68, 0.8); /* Slight transparency */
+    background-color: rgba(68, 68, 68, 0.8);
     color: white;
     border: none;
     font-size: 1em;
@@ -289,37 +285,34 @@ h2 {
     font-size: 1.2em;
 }
 
-/* Hover effect for the dropdown */
 .dropdown-filter:hover {
-    background-color: rgba(68, 68, 68, 1); /* Full opacity on hover */
+    background-color: rgba(68, 68, 68, 1);
     transform: translateY(-2px);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Focus effect when the dropdown is selected */
 .dropdown-filter:focus {
     outline: none;
     box-shadow: 0 0 0 2px #3498db;
 }
 
-/* Styling the select box options */
 .dropdown-filter option {
-    background-color: rgba(68, 68, 68, 0.9); /* Transparent background for options */
+    background-color: rgba(68, 68, 68, 0.9);
     color: white;
     padding: 10px;
     border: none;
     cursor: pointer;
-    border-radius: 10px; /* Curved corners */
+    border-radius: 10px;
 }
 
 .dropdown-filter option:hover {
-    background-color: rgb(219, 214, 214); /* Full opacity on hover */
+    background-color: rgb(219, 214, 214);
 }
 
 .dropdown-filter option:checked {
-    background-color: #2980b9; /* Blue background for selected option */
+    background-color: #2980b9;
     color: white;
-    border-radius: 10px; /* Curved corners on selected option */
+    border-radius: 10px;
 }
 
 .modal-header {
@@ -368,7 +361,7 @@ h2 {
 
 @media (max-width: 768px) {
     .commission-item, .work-item {
-        width: calc(50% - 20px); /* 2 items per row on medium screens */
+        width: calc(50% - 20px);
     }
 
     .modal-content {
@@ -378,7 +371,7 @@ h2 {
 
 @media (max-width: 480px) {
     .commission-item, .work-item {
-        width: 100%; /* 1 item per row on very small screens */
+        width: 100%;
     }
 }
 
@@ -404,4 +397,20 @@ h2 {
 
 .social-icon:active {
     transform: scale(1);
+}
+
+.scroll-animation {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.scroll-animation.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.scroll-animation.hide {
+    opacity: 0;
+    transform: translateY(30px);
 }

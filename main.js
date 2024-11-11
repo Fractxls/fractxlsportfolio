@@ -1,8 +1,8 @@
 const skills = [
     { name: "Roblox Building", description: "Advanced proficiency in Low & High Poly Roblox building themes." },
     { name: "Roblox UI Design", description: "Learning low-poly/medium-poly Graphical User Interface Design." },
-    { name: "Luau Programmer", description: "Learning/Intermediate Luau Programmer." },
-    { name: "Clothing Designer", description: "Learning/Intermediate Clothing Designer for the Roblox Platform." },
+    { name: "Luau Programmer", description: "Learning/Indermediate Luau Programmer." },
+    { name: "Clothing Designer", description: "Learning/Indermediate Clothing Designer for the Roblox Platform.." },
 ];
 
 const categories = {
@@ -13,19 +13,19 @@ const categories = {
 };
 
 const previousWork = [
-    { name: "High-Poly Road", Image: "HighPoly1.png", category: "Building", type: "High-Poly" },
-    { name: "High-Poly Entrance", Image: "HighPoly2.png", category: "Building", type: "High-Poly" },
-    { name: "High-Poly Entrance 2", Image: "HighPoly3.png", category: "Building", type: "High-Poly" },
-    { name: "High-Poly Interior", Image: "HighPoly4.png", category: "Building", type: "High-Poly" },
-    { name: "Medium-Poly Radio", Image: "MediumPolyRadio.png", category: "UI Design", type: "Medium-Poly UI" },
-    { name: "Low-Poly Cave", Image: "LowPolyCave.png", category: "Building", type: "Low-Poly" },
-    { name: "Low-Poly Cave Entrance", Image: "LowPolyCaveEntrance.png", category: "Building", type: "Low-Poly" },
-    { name: "Low-Poly Map Design", Image: "LowPolyMapDesign.png", category: "Building", type: "Low-Poly" },
-    { name: "Low-Poly Cabin", Image: "LowPolyCabin.png", category: "Building", type: "Low-Poly" },
-    { name: "Low-Poly Snowman", Image: "LowPolySnowMan.png", category: "Building", type: "Low-Poly" },
-    { name: "Low-Poly Cabin", Image: "LowPolyRNGCabin.png", category: "Building", type: "Low-Poly" },
-    { name: "Low-Poly Map Design", Image: "LowPolyRNGMapDesign.png", category: "Building", type: "Low-Poly" },
-    { name: "Low-Poly Cave Entrance", Image: "LowPolyRNGCaveEntrance.png", category: "Building", type: "Low-Poly" },
+    { name: "High-Poly Road", image: "HighPoly1.png", category: "Building", type: "High-Poly" },
+    { name: "High-Poly Entrance", image: "HighPoly2.png", category: "Building", type: "High-Poly" },
+    { name: "High-Poly Entrance 2", image: "HighPoly3.png", category: "Building", type: "High-Poly" },
+    { name: "High-Poly Interior", image: "HighPoly4.png", category: "Building", type: "High-Poly" },
+    { name: "Medium-Poly Radio", image: "MediumPolyRadio.png", category: "UI Design", type: "Medium-Poly UI" },
+    { name: "Low-Poly Cave", image: "LowPolyCave.png", category: "Building", type: "Low-Poly" },
+    { name: "Low-Poly Cave Entrance", image: "LowPolyCaveEntrance.png", category: "Building", type: "Low-Poly" },
+    { name: "Low-Poly Map Design", image: "LowPolyMapDesign.png", category: "Building", type: "Low-Poly" },
+    { name: "Low-Poly Cabin", image: "LowPolyCabin.png", category: "Building", type: "Low-Poly" },
+    { name: "Low-Poly Snowman", image: "LowPolySnowMan.png", category: "Building", type: "Low-Poly" },
+    { name: "Low-Poly Cabin", image: "LowPolyRNGCabin.png", category: "Building", type: "Low-Poly" },
+    { name: "Low-Poly Map Design", image: "LowPolyRNGMapDesign.png", category: "Building", type: "Low-Poly" },
+    { name: "Low-Poly Cave Entrance", image: "LowPolyRNGCaveEntrance.png", category: "Building", type: "Low-Poly" },
 ];
 
 const commissions = [
@@ -86,6 +86,27 @@ function loadCommissions(page) {
     updateCommissionButtons();
 }
 
+function updateCommissionButtons() {
+    if (currentCommissionsPage * commissionsPerPage < commissions.length) {
+        loadMoreCommissionsBtn.style.display = 'block';
+        showLessCommissionsBtn.style.display = 'none';
+    } else {
+        loadMoreCommissionsBtn.style.display = 'none';
+        showLessCommissionsBtn.style.display = currentCommissionsPage > 1 ? 'block' : 'none';
+    }
+}
+
+loadMoreCommissionsBtn.addEventListener('click', () => {
+    currentCommissionsPage++;
+    loadCommissions(currentCommissionsPage);
+});
+
+showLessCommissionsBtn.addEventListener('click', () => {
+    currentCommissionsPage = 1;
+    commissionsContainer.innerHTML = '';
+    loadCommissions(currentCommissionsPage);
+});
+
 function showModal(commission) {
     modalTitle.innerHTML = `<a href="${commission.link}" target="_blank">${commission.name}</a>`;
     modalLogo.src = `Images/${commission.logo}`;
@@ -96,29 +117,127 @@ function showModal(commission) {
     setTimeout(() => modal.classList.add('show'), 10);
 }
 
+closeModal.onclick = function () {
+    modal.classList.remove('show');
+    setTimeout(() => modal.style.display = 'none', 300);
+};
+
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.classList.remove('show');
+        setTimeout(() => modal.style.display = 'none', 300);
+    }
+};
+
+skills.forEach(skill => {
+    const skillBox = document.createElement('div');
+    skillBox.className = 'skill-box';
+    skillBox.innerHTML = `
+        <h3>${skill.name}</h3>
+        <p>${skill.description}</p>
+    `;
+    skillsContainer.appendChild(skillBox);
+});
+
+const worksPerPage = 4;
+let currentWorkPage = 1;
+let filteredWork = [...previousWork];
+
 function loadWork(page) {
-    const start = (page - 1) * 4;
-    const end = start + 4;
-    const workSlice = previousWork.slice(start, end);
+    const start = (page - 1) * worksPerPage;
+    const end = start + worksPerPage;
+    const workSlice = filteredWork.slice(start, end);
 
     workSlice.forEach(work => {
         const workItem = document.createElement('div');
         workItem.className = 'work-item';
         workItem.innerHTML = `
-            <img src="Images/${work.Image}" alt="${work.name}" class="work-image">
+            <img src="Images/${work.image}" alt="${work.name}" class="work-image">
             <div class="work-name">${work.name}</div>
         `;
         workItem.querySelector('img').addEventListener('click', () => showWorkModal(work));
         galleryContainer.appendChild(workItem);
     });
+
+    updateWorkButtons();
+}
+
+function updateWorkButtons() {
+    if (currentWorkPage * worksPerPage < filteredWork.length) {
+        loadMorePreviousBtn.style.display = 'block';
+        showLessPreviousBtn.style.display = 'none';
+    } else {
+        loadMorePreviousBtn.style.display = 'none';
+        showLessPreviousBtn.style.display = currentWorkPage > 1 ? 'block' : 'none';
+    }
+}
+
+loadMorePreviousBtn.addEventListener('click', () => {
+    currentWorkPage++;
+    loadWork(currentWorkPage);
+});
+
+showLessPreviousBtn.addEventListener('click', () => {
+    currentWorkPage = 1;
+    galleryContainer.innerHTML = '';
+    loadWork(currentWorkPage);
+});
+
+function loadPreviousWork() {
+    Object.keys(categories).forEach(category => {
+        const option = document.createElement('option');
+        option.value = category;
+        option.textContent = category;
+        categoryFilter.appendChild(option);
+    });
+
+    updateTypeFilter(categoryFilter.value);
+
+    categoryFilter.addEventListener('change', () => {
+        updateTypeFilter(categoryFilter.value);
+        filterWork();
+    });
+
+    typeFilter.addEventListener('change', filterWork);
+
+    filterWork();
+}
+
+function updateTypeFilter(selectedCategory) {
+    const types = categories[selectedCategory] || [];
+    typeFilter.innerHTML = '<option value="all">All Types</option>';
+    
+    types.forEach(type => {
+        const option = document.createElement('option');
+        option.value = type;
+        option.textContent = type;
+        typeFilter.appendChild(option);
+    });
+}
+
+function filterWork() {
+    const selectedCategory = categoryFilter.value;
+    const selectedType = typeFilter.value;
+    
+    filteredWork = previousWork.filter(work =>
+        (selectedCategory === 'all' || work.category === selectedCategory) &&
+        (selectedType === 'all' || work.type === selectedType)
+    );
+
+    currentWorkPage = 1; 
+    galleryContainer.innerHTML = ''; 
+    loadWork(currentWorkPage);
 }
 
 function showWorkModal(work) {
     modalTitle.textContent = work.name;
-    modalLogo.src = `Images/${work.Image}`;
+    modalLogo.src = `Images/${work.image}`;
+    modalPayout.textContent = '';
     modalDescription.textContent = `Category: ${work.category}, Type: ${work.type}`;
+
     modal.style.display = 'block';
     setTimeout(() => modal.classList.add('show'), 10);
 }
 
 loadCommissions(currentCommissionsPage);
+loadPreviousWork();

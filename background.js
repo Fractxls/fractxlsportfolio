@@ -5,10 +5,13 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 const dots = [];
-const numDots = 500;
 const maxDistance = 100;
 
+const dotDensity = 0.0005; 
+let numDots = Math.floor(canvas.width * canvas.height * dotDensity);
+
 function createDots() {
+    dots.length = 0;
     for (let i = 0; i < numDots; i++) {
         dots.push({
             x: Math.random() * canvas.width,
@@ -42,6 +45,13 @@ function updateDots() {
     }
     requestAnimationFrame(updateDots);
 }
+
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    numDots = Math.floor(canvas.width * canvas.height * dotDensity);
+    createDots();
+});
 
 createDots();
 updateDots();

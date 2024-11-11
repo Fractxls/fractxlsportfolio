@@ -1,5 +1,5 @@
 const skills = [
-    { name: "Roblox Building", description: "Advanced proficiency in Low & High Poly Roblox building themes." },
+    { name: "Roblox Builder", description: "Advanced proficiency in Low & High Poly Roblox building themes." },
     { name: "Roblox UI Design", description: "Learning low-poly/medium-poly Graphical User Interface Design." },
     { name: "Luau Programmer", description: "Learning/Indermediate Luau Programmer." },
     { name: "Clothing Designer", description: "Learning/Indermediate Clothing Designer for the Roblox Platform." },

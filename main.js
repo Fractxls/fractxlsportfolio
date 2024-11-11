@@ -32,7 +32,7 @@ const commissions = [
         name: "Voice Control",
         logo: "VoiceControl.png",
         payout: "200K Robux",
-        description: "Tasked with the building of World 3 for Voice Control & RunUp Studios",
+        description: "Tasked with the building of World 3 for Voice Control & RunUp Studios. - Collaborated with @Poopy",
         tags: ["Building"],
         link: "https://www.roblox.com/games/17800309532/Voice-Control"
     },
@@ -40,7 +40,7 @@ const commissions = [
         name: "Al's RNG",
         logo: "AlsRNG.png",
         payout: "20K Robux",
-        description: "Tasked with building the main map for AL's Rng and GreenBey56's Studio.",
+        description: "Tasked with building the main map for AL's Rng and GreenBey56's Studio. - Collaborated with @Poopy",
         tags: ["Building"],
         link: "https://www.roblox.com/games/16638124623/Als-RNG"
     },

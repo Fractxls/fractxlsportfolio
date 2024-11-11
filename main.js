@@ -272,5 +272,3 @@ function addScrollAnimation() {
 
 loadCommissions(currentCommissionsPage);
 loadPreviousWork(currentWorkPage);
-addScrollAnimation()
-animateOnScroll()

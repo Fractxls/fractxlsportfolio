@@ -144,18 +144,9 @@ let currentWorkPage = 1;
 let filteredWork = [...previousWork];
 
 function loadWork(page) {
-    galleryContainer.innerHTML = ''; // Clear previous content
     const start = (page - 1) * worksPerPage;
     const end = start + worksPerPage;
     const workSlice = filteredWork.slice(start, end);
-
-    if (workSlice.length === 0) {
-        const noImagesMessage = document.createElement('div');
-        noImagesMessage.className = 'no-images-found';
-        noImagesMessage.textContent = 'No Images';
-        galleryContainer.appendChild(noImagesMessage);
-        return;
-    }
 
     workSlice.forEach(work => {
         const workItem = document.createElement('div');
@@ -248,5 +239,39 @@ function showWorkModal(work) {
     setTimeout(() => modal.classList.add('show'), 10);
 }
 
+function animateOnScroll() {
+    const scrollElements = document.querySelectorAll('.scroll-animation');
+    
+    const observerOptions = {
+        threshold: 0.1,
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+            const target = entry.target;
+
+            if (entry.isIntersecting) {
+                target.classList.add('show');
+                target.classList.remove('hide');
+            } else {
+                target.classList.remove('show');
+                target.classList.add('hide');
+            }
+        });
+    }, observerOptions);
+
+    scrollElements.forEach((el) => observer.observe(el));
+}
+
+function addScrollAnimation() {
+    const workItems = document.querySelectorAll('.work-item');
+    const commissionItems = document.querySelectorAll('.commission-item');
+
+    workItems.forEach((item) => item.classList.add('scroll-animation'));
+    commissionItems.forEach((item) => item.classList.add('scroll-animation'));
+}
+
 loadCommissions(currentCommissionsPage);
-loadPreviousWork();
+loadPreviousWork(currentWorkPage);
+addScrollAnimation()
+animateOnScroll()

@@ -13,19 +13,19 @@ const categories = {
 };
 
 const previousWork = [
-    { name: "High-Poly Road", image: "HighPoly1.png", category: "Building", type: "High-Poly" },
-    { name: "High-Poly Entrance", image: "HighPoly2.png", category: "Building", type: "High-Poly" },
-    { name: "High-Poly Entrance 2", image: "HighPoly3.png", category: "Building", type: "High-Poly" },
-    { name: "High-Poly Interior", image: "HighPoly4.png", category: "Building", type: "High-Poly" },
-    { name: "Medium-Poly Radio", image: "MediumPolyRadio.png", category: "UI Design", type: "Medium-Poly UI" },
-    { name: "Low-Poly Cave", image: "LowPolyCave.png", category: "Building", type: "Low-Poly" },
-    { name: "Low-Poly Cave Entrance", image: "LowPolyCaveEntrance.png", category: "Building", type: "Low-Poly" },
-    { name: "Low-Poly Map Design", image: "LowPolyMapDesign.png", category: "Building", type: "Low-Poly" },
-    { name: "Low-Poly Cabin", image: "LowPolyCabin.png", category: "Building", type: "Low-Poly" },
-    { name: "Low-Poly Snowman", image: "LowPolySnowMan.png", category: "Building", type: "Low-Poly" },
-    { name: "Low-Poly Cabin", image: "LowPolyRNGCabin.png", category: "Building", type: "Low-Poly" },
-    { name: "Low-Poly Map Design", image: "LowPolyRNGMapDesign.png", category: "Building", type: "Low-Poly" },
-    { name: "Low-Poly Cave Entrance", image: "LowPolyRNGCaveEntrance.png", category: "Building", type: "Low-Poly" },
+    { name: "High-Poly Road", Image: "HighPoly1.png", category: "Building", type: "High-Poly" },
+    { name: "High-Poly Entrance", Image: "HighPoly2.png", category: "Building", type: "High-Poly" },
+    { name: "High-Poly Entrance 2", Image: "HighPoly3.png", category: "Building", type: "High-Poly" },
+    { name: "High-Poly Interior", Image: "HighPoly4.png", category: "Building", type: "High-Poly" },
+    { name: "Medium-Poly Radio", Image: "MediumPolyRadio.png", category: "UI Design", type: "Medium-Poly UI" },
+    { name: "Low-Poly Cave", Image: "LowPolyCave.png", category: "Building", type: "Low-Poly" },
+    { name: "Low-Poly Cave Entrance", Image: "LowPolyCaveEntrance.png", category: "Building", type: "Low-Poly" },
+    { name: "Low-Poly Map Design", Image: "LowPolyMapDesign.png", category: "Building", type: "Low-Poly" },
+    { name: "Low-Poly Cabin", Image: "LowPolyCabin.png", category: "Building", type: "Low-Poly" },
+    { name: "Low-Poly Snowman", Image: "LowPolySnowMan.png", category: "Building", type: "Low-Poly" },
+    { name: "Low-Poly Cabin", Image: "LowPolyRNGCabin.png", category: "Building", type: "Low-Poly" },
+    { name: "Low-Poly Map Design", Image: "LowPolyRNGMapDesign.png", category: "Building", type: "Low-Poly" },
+    { name: "Low-Poly Cave Entrance", Image: "LowPolyRNGCaveEntrance.png", category: "Building", type: "Low-Poly" },
 ];
 
 const commissions = [
@@ -152,7 +152,7 @@ function loadWork(page) {
         const workItem = document.createElement('div');
         workItem.className = 'work-item';
         workItem.innerHTML = `
-            <img src="Images/${work.image}" alt="${work.name}" class="work-image">
+            <img src="Images/${work.Image}" alt="${work.name}" class="work-Image">
             <div class="work-name">${work.name}</div>
         `;
         workItem.querySelector('img').addEventListener('click', () => showWorkModal(work));
@@ -231,7 +231,7 @@ function filterWork() {
 
 function showWorkModal(work) {
     modalTitle.textContent = work.name;
-    modalLogo.src = `Images/${work.image}`;
+    modalLogo.src = `Images/${work.Image}`;
     modalPayout.textContent = '';
     modalDescription.textContent = `Category: ${work.category}, Type: ${work.type}`;
 
